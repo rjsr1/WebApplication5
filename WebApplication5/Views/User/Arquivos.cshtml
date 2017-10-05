@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "ArquivosPage";
+}
+@ arquivos{ 
+    List<string>
+}
+
+<h2>FilePage</h2>
+@foreach (var item in arquivos)
+{
+    <span>@item.Name</span>
+}
