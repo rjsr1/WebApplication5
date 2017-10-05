@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication5", "WebApplication5\WebApplication5.csproj", "{5EBC4E4F-78D6-4C17-9ABF-90C63AFD81CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HELPERS", "HELPERS\HELPERS.csproj", "{60E7F5FF-C4C6-4B2F-8B8F-D8E723C8185A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5EBC4E4F-78D6-4C17-9ABF-90C63AFD81CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EBC4E4F-78D6-4C17-9ABF-90C63AFD81CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EBC4E4F-78D6-4C17-9ABF-90C63AFD81CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EBC4E4F-78D6-4C17-9ABF-90C63AFD81CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60E7F5FF-C4C6-4B2F-8B8F-D8E723C8185A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60E7F5FF-C4C6-4B2F-8B8F-D8E723C8185A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60E7F5FF-C4C6-4B2F-8B8F-D8E723C8185A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60E7F5FF-C4C6-4B2F-8B8F-D8E723C8185A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D9BF65CD-39AD-4167-888F-D2E1BF514CC5}
+	EndGlobalSection
+EndGlobal
