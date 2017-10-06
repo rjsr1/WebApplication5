@@ -15,12 +15,15 @@ namespace WebApplication5Tests
         public void TestMethod1()
         {
             List<String> teste = new List<string>();
-            teste.Add("1");
-            teste.Add("2");
-            Arquivo arq = new Arquivo();
-            arq.Arquivo_Nome = "teste";            
-            CollectionAssert.Contains( arq.Pegar_Arquivos("test"), "texto");
-           
+            teste.Add("Teste_txt");
+            teste.Add("Texto_teste");
+            teste.Add("Texto");
+            User u = new User();
+            u.Password = "dada";
+            u.UserName = "test";
+            CollectionAssert.AreEquivalent( teste,u.Pegar_Arquivos("test"));
+
+
         }
     }
 }

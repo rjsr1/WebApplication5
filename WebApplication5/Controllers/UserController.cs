@@ -32,7 +32,7 @@ namespace WebApplication5.Controllers
                 }
                 else
                 {
-                return RedirectToAction("FilePage");
+                return RedirectToAction("Index", "Home");
             }
             
         }

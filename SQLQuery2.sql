@@ -1,1 +1,1 @@
-﻿select Arquivo.Id from (Arquivo JOIN System_Users on UserID=System_Users.Id) 
+﻿select Username from System_Users WHERE Username='test' AND Password='dada';

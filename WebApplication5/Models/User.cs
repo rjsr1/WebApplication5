@@ -22,7 +22,7 @@ namespace WebApplication5.Models
 
 
 
-        public bool IsValid(string _username, string _password)
+        public bool IsValid(string username, string password)
         {
             using (var conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\rodolfo.rocha\source\repos\WebApplication5\WebApplication5\App_Data\DadosTeste.mdf;Integrated Security=True"))
             {
@@ -30,18 +30,29 @@ namespace WebApplication5.Models
                        @"WHERE [Username] = @u AND [Password] = @p";
                 var cmd = new SqlCommand(_sql, conn);
                 cmd.Parameters
-                   .Add(new SqlParameter("@u", SqlDbType.NVarChar))
-                   .Value = _username;
+                    .Add(new SqlParameter("@u", SqlDbType.NVarChar))
+                    .Value = username;
                 cmd.Parameters
                     .Add(new SqlParameter("@p", SqlDbType.NVarChar))
-                    .Value = HELPERS.SHA1.Encode(_password);
+                    .Value = password;
                 conn.Open();
                 var reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
+                    while (reader.Read())
+                    {
+                        if (reader.GetString(0) == username)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
                     reader.Dispose();
                     cmd.Dispose();
-                    return true;
+
                 }
                 else
                 {
@@ -52,39 +63,59 @@ namespace WebApplication5.Models
                 }
             }
 
-
+            return false;//
         }
+
+
         public List<string> Pegar_Arquivos(string UserName)
         {
             List<string> result = new List<string>();
-            using (var conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\rodolfo.rocha\source\repos\WebApplication5\WebApplication5\App_Data\DadosTeste.mdf;Integrated Security=True"))
+            int UserID=-1;
+            using (var conn1 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\rodolfo.rocha\source\repos\WebApplication5\WebApplication5\App_Data\DadosTeste.mdf;Integrated Security=True"))
             {
-                conn.Open();
-                string _sql2 = @"SELECT [Id] FROM [dbo].[System_Users] WHERE [Username]=UserName";
-                var cmd2 = new SqlCommand(_sql2, conn);
-                var reader2 = cmd2.ExecuteReader();
-                int UserId = (int)reader2["Id"];
+                conn1.Open();
+                string _sql1 = @"SELECT [dbo].[System_Users].[Id] FROM [dbo].[System_Users] WHERE [dbo].[System_Users].[Username]=@u";
+                var cmd1 = new SqlCommand(_sql1, conn1);
+                cmd1.Parameters
+                    .Add(new SqlParameter("@u", SqlDbType.NVarChar))
+                    .Value = UserName;
+                var reader1 = cmd1.ExecuteReader();
+                while (reader1.Read())
+                {
+                    UserID = reader1.GetInt32(0);
+                }
+                cmd1.Dispose();
+                conn1.Dispose();
+                reader1.Close();
+            }
+            using (var conn2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\rodolfo.rocha\source\repos\WebApplication5\WebApplication5\App_Data\DadosTeste.mdf;Integrated Security=True"))
+            {
+                conn2.Open();
+                string _sql = @"SELECT [dbo].[Arquivo].[Name] FROM ( [dbo].[Arquivo] JOIN [dbo].[System_Users] ON [dbo].[Arquivo].[UserID]=[dbo].[System_Users].[Id])" +
+                       @"WHERE [UserID] =@uid";
 
-                conn.Dispose();
-                string _sql = @"SELECT [Name] FROM ( [dbo].[Arquivo] JOIN [dbo].[System_Users] ON [UserID]=[System_Users].[Id])" +
-                       @"WHERE [UserID] =userId";
-
-                var cmd = new SqlCommand(_sql, conn);
-                
+                var cmd = new SqlCommand(_sql, conn2);
+                cmd.Parameters
+                    .Add(new SqlParameter("@uid", SqlDbType.NVarChar))
+                    .Value = UserID;
 
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    result.Add(reader[0].ToString());
+                    int i = 0;
+                    result.Add(reader.GetString(i));
+                    i++;
                 }
-                conn.Dispose();
+                reader.Close();
+                conn2.Dispose();
                 cmd.Dispose();
-                cmd2.Dispose();
+
+
+
+                return result;
             }
 
-            return result;
         }
 
     }
-
-   }
+}
