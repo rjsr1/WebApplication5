@@ -24,28 +24,28 @@ namespace WebApplication5.Controllers
         [HttpPost]
         public ActionResult Login(Models.User user)
         {
-            if (ModelState.IsValid)
-            {
+            
                 if (user.IsValid(user.UserName, user.Password))
                 {
-                    return RedirectToAction("UserController", "PageFile");
+                    ViewBag.arquivos = user.Pegar_Arquivos(user.UserName);
+                    return View("FilePage");
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Login data is incorrect!");
-                }
+                return RedirectToAction("FilePage");
             }
-            return View();
+            
         }
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
-       // public ActionResult FilePage(Models.User user)
-       // {
+       public ActionResult FilePage(Models.User user)
+        {
             //buscar files no banco pra mostrar na view.
-       //     List<string> arquivos=
-       // }
+            ViewBag.arquivos=user.Pegar_Arquivos(user.UserName);
+            return View();
+        }
     }
 }

@@ -1,0 +1,14 @@
+﻿@model WebApplication5.Models.User
+
+@{
+    ViewBag.Title = "FilePage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>FilePage</h2>
+@foreach(var arquivo in ViewBag.arquivos)
+{
+    <li>
+        @arquivo
+    </li>
+}

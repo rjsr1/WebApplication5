@@ -194,6 +194,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\Arquivos.cshtml" />
+    <Content Include="Views\User\FilePage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HELPERS\HELPERS.csproj">

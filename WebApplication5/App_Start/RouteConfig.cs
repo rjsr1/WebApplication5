@@ -18,6 +18,11 @@ namespace WebApplication5
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+            routes.MapRoute(
+                name: "File",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "UserController", action = "FilePage", id = UrlParameter.Optional }
+            );
         }
     }
 }

@@ -19,7 +19,7 @@ namespace WebApplication5Tests
             teste.Add("2");
             Arquivo arq = new Arquivo();
             arq.Arquivo_Nome = "teste";            
-            CollectionAssert.Contains( arq.Pegar_Arquivos(3), "lista");
+            CollectionAssert.Contains( arq.Pegar_Arquivos("test"), "texto");
            
         }
     }
