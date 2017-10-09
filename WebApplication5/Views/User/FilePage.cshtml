@@ -7,27 +7,28 @@
 <body>
     <div class="content-block" style="align-items:center">
         <div>
-            <h2 class="h2">Arquivos do Usuario</h2>
+            <h3 style="text-align:center">Lista de Arquivos</h3>
         </div>
-        <table style="width:50%;height:80%;align-self:center;position:page;top:50%;right:50%">
-           
-            <tr >
-                <th style="text-align:center">File Name</th>
-                <th style="text-align:center">Link</th>
-            </tr>
-
+        <table class="table-hover" style="font-size:large;margin:auto;table-layout:auto;width:40%;height:60%">
+            <thead>
+                <tr>
+                    <th style="text-align:initial">File Name</th>
+                    <th style="text-align:initial">Link</th>
+                </tr>
+            </thead>
+            <tbody>
             @foreach (var arquivo in ViewBag.arquivos)
             {
                 <tr>
-                    <td style="text-align:center">
+                    <td style="text-align:initial;margin:auto">
                         @arquivo
                     </td>
-                    <td style="text-align:center">
+                    <td style="text-align:initial;margin:auto">
                         @Html.ActionLink("Download", "Download", new { Arquivo = arquivo }, "Arquivo")
                     </td>
                 </tr>
-
             }
+            </tbody>
         </table>
     </div>
 </body>
