@@ -4,25 +4,30 @@
     ViewBag.Title = "FilePage";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div>
-    <h2 class="h2">Arquivos do Usuario</h2>
-</div>
-<table class="table-responsive">
-    <tr>
-        <th>File Name</th>
-        <th>Link</th>
-    </tr>
+<body>
+    <div class="content-block" style="align-items:center">
+        <div>
+            <h2 class="h2">Arquivos do Usuario</h2>
+        </div>
+        <table style="width:50%;height:80%;align-self:center;position:page;top:50%;right:50%">
+           
+            <tr >
+                <th style="text-align:center">File Name</th>
+                <th style="text-align:center">Link</th>
+            </tr>
 
-    @foreach (var arquivo in ViewBag.arquivos)
-    {
-        <tr>
-            <td>
-                @arquivo
-            </td>
-            <td>
-              @Html.ActionLink("Download", "Download", new { Arquivo = arquivo },"Arquivo")
-            </td>
-        </tr>
+            @foreach (var arquivo in ViewBag.arquivos)
+            {
+                <tr>
+                    <td style="text-align:center">
+                        @arquivo
+                    </td>
+                    <td style="text-align:center">
+                        @Html.ActionLink("Download", "Download", new { Arquivo = arquivo }, "Arquivo")
+                    </td>
+                </tr>
 
-    }
-</table>
+            }
+        </table>
+    </div>
+</body>

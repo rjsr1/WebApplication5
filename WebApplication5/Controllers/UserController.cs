@@ -20,7 +20,7 @@ namespace WebApplication5.Controllers
         public FileResult Download(string arquivo)
         {
             string pathValue = System.Configuration.ConfigurationManager.AppSettings["relativePath"];
-            return File(pathValue+arquivo, "application/pdf","arquivo");
+            return File(pathValue+arquivo, "application/zip",arquivo);
         }
         [HttpGet]
         public ActionResult Login()

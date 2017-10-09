@@ -8,13 +8,16 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="nav-divider">       
-        
-            @Html.ActionLink("Register", "Register", "User")
-            <span> | </span>
-            @Html.ActionLink("Sign In", "Login", "User")        
+   
+    <div class="container">
+        <h1 style="float:left">
+            <a href="http://www.datametrica.com.br">
+                <img src="https://logocln.uolhost.com.br/datametric.dominiotemporario.com.jpg">
+            </a>
+        </h1>
     </div>
-
+    
+   
     @RenderBody()
 
     @Scripts.Render("~/bundles/jquery")
