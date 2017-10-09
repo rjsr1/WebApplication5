@@ -6,10 +6,10 @@
 }
 @using (Html.BeginForm())
 {
-    @Html.ValidationSummary(true, "Login failed. Check your login details.");
-    <div>
+    @Html.ValidationSummary(true, "Login falhou. Verifique suas credenciais");
+    <div class="glyphicon-log-in">
         <fieldset>
-            <legend>Login</legend>
+            <legend class="img-responsive">Login</legend>
             <div class="editor-label">
                 @Html.LabelFor(u => u.UserName)
             </div>

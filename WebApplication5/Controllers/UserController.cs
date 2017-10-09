@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using System.Data;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace WebApplication5.Controllers
 {
@@ -15,6 +16,11 @@ namespace WebApplication5.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+        public FileResult Download(string arquivo)
+        {
+            string pathValue = System.Configuration.ConfigurationManager.AppSettings["relativePath"];
+            return File(pathValue+arquivo, "application/pdf","arquivo");
         }
         [HttpGet]
         public ActionResult Login()
@@ -27,12 +33,13 @@ namespace WebApplication5.Controllers
             
                 if (user.IsValid(user.UserName, user.Password))
                 {
-                    ViewBag.arquivos = user.Pegar_Arquivos(user.UserName);
+                    ViewBag.arquivos = user.Pegar_Arquivos();
                     return View("FilePage");
                 }
                 else
                 {
-                return RedirectToAction("Index", "Home");
+                 ModelState.AddModelError("User", "Passaporte ou login incorreto");
+                return View();
             }
             
         }
@@ -44,7 +51,7 @@ namespace WebApplication5.Controllers
        public ActionResult FilePage(Models.User user)
         {
             //buscar files no banco pra mostrar na view.
-            ViewBag.arquivos=user.Pegar_Arquivos(user.UserName);
+            ViewBag.arquivos=user.Pegar_Arquivos();
             return View();
         }
     }

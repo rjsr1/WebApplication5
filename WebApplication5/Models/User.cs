@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
+using System.IO;
+using System.Configuration;
 
 namespace WebApplication5.Models
 {
@@ -63,58 +62,21 @@ namespace WebApplication5.Models
                 }
             }
 
-            return false;//
+            return false;
         }
 
 
-        public List<string> Pegar_Arquivos(string UserName)
+        public List<string> Pegar_Arquivos()
         {
             List<string> result = new List<string>();
-            int UserID=-1;
-            using (var conn1 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\rodolfo.rocha\source\repos\WebApplication5\WebApplication5\App_Data\DadosTeste.mdf;Integrated Security=True"))
+            string pathValue = ConfigurationManager.AppSettings["Path"];
+            DirectoryInfo directory = new DirectoryInfo(pathValue);
+            foreach (FileInfo fInfo in directory.GetFiles())
             {
-                conn1.Open();
-                string _sql1 = @"SELECT [dbo].[System_Users].[Id] FROM [dbo].[System_Users] WHERE [dbo].[System_Users].[Username]=@u";
-                var cmd1 = new SqlCommand(_sql1, conn1);
-                cmd1.Parameters
-                    .Add(new SqlParameter("@u", SqlDbType.NVarChar))
-                    .Value = UserName;
-                var reader1 = cmd1.ExecuteReader();
-                while (reader1.Read())
-                {
-                    UserID = reader1.GetInt32(0);
-                }
-                cmd1.Dispose();
-                conn1.Dispose();
-                reader1.Close();
+                result.Add(fInfo.Name);
             }
-            using (var conn2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\rodolfo.rocha\source\repos\WebApplication5\WebApplication5\App_Data\DadosTeste.mdf;Integrated Security=True"))
-            {
-                conn2.Open();
-                string _sql = @"SELECT [dbo].[Arquivo].[Name] FROM ( [dbo].[Arquivo] JOIN [dbo].[System_Users] ON [dbo].[Arquivo].[UserID]=[dbo].[System_Users].[Id])" +
-                       @"WHERE [UserID] =@uid";
-
-                var cmd = new SqlCommand(_sql, conn2);
-                cmd.Parameters
-                    .Add(new SqlParameter("@uid", SqlDbType.NVarChar))
-                    .Value = UserID;
-
-                var reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    int i = 0;
-                    result.Add(reader.GetString(i));
-                    i++;
-                }
-                reader.Close();
-                conn2.Dispose();
-                cmd.Dispose();
-
-
-
-                return result;
-            }
-
+            return result;
+           
         }
 
     }
