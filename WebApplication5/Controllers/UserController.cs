@@ -48,6 +48,7 @@ namespace WebApplication5.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
+        [Authorize]
        public ActionResult FilePage(Models.User user)
         {
             //buscar files no banco pra mostrar na view.
