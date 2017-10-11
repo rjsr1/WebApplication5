@@ -20,8 +20,8 @@
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication>disabled</IISExpressAnonymousAuthentication>
-    <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
@@ -214,6 +214,7 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\Arquivos.cshtml" />
     <Content Include="Views\User\FilePage.cshtml" />
+    <Content Include="Views\User\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HELPERS\HELPERS.csproj">
